@@ -1,0 +1,6 @@
+Grep for pulling uniquer IP addresses out of command "sudo nmap -R -Pn --open  10.0.5.0/24 -p 53 "
+- grep -oE ".{20,22}/open.{0,0}" | cut -c 1-10
+reverse lookup with nmap
+- sudo nmap -sL 10.0.5.0/24 -R --dns-servers 10.0.5.22  | grep "Nmap scan report" | grep -wv -x '.\{29,32\}'
+Filtering zt outputs
+- cat ~/Desktop/zt.tst | awk '$4 ~ /(A|PTR)$/ {print $1","$5}' |grep -v ";" | grep -wv -x '.\{0,3\}' 
